@@ -26,7 +26,7 @@ class MakesController extends Controller
      */
     public function create()
     {
-        //
+        return view('makes.create');
     }
 
     /**
@@ -37,7 +37,34 @@ class MakesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+
+            'name' => 'required',
+            'year' => 'required'
+        );
+
+        /*print '<pre>';
+        print_r($request->all());
+        die;*/
+
+        $validator = Validator::make($request->all(), $rules);
+        // process the login
+        if ($validator->fails()) {
+            return redirect('makes/create')
+                ->withErrors($validator)
+                ->withInput($request->all());
+        } else {
+
+            $makesDate = \DateTime::createFromFormat('Y', $request->get('year'));
+
+            $makes = new Makes([
+                'name' => $request->get('name'),
+                'year' => makesDate
+                ,
+            ]);
+            $makes->save();
+            return redirect('makes');
+        }
     }
 
     /**

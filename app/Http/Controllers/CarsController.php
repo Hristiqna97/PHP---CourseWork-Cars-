@@ -99,10 +99,8 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        $models = Models::all();
-        $makes = Makes::all();
-        $car = Cars::find($id);
-        return view("cars.edit", ["models" => $models, "makes" => $makes, "car" => $car]);
+        $cars = Cars::find($id);
+        return view('cars.edit', compact('cars','model_id'));;
 
     }
 

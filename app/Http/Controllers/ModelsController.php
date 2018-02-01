@@ -26,7 +26,7 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('models.create');
     }
 
     /**
@@ -37,8 +37,33 @@ class ModelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'name' => 'required',
+            'makes_id' => 'required'
+        );
+
+       // print '<pre>';
+       // print_r($request->all());
+       // die;
+
+        $validator = Validator::make($request->all(), $rules);
+        // process the login
+        if ($validator->fails()) {
+            return redirect('models/create')
+                ->withErrors($validator)
+                ->withInput($request->all());
+        } else {
+
+
+            $models = new Models([
+                'name' => $request->get('name'),
+                'makes_id' => $request->get('makes_id'),
+            ]);
+            $models->save();
+            return redirect('models');
+        }
     }
+
 
     /**
      * Display the specified resource.
