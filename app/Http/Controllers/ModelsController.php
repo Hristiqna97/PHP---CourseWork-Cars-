@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models;
 use Illuminate\Http\Request;
 
 class ModelsController extends Controller
@@ -13,7 +14,9 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        //
+        $models = Models::latest()->paginate(50);
+
+        return view("models.index", compact("models"))->with('i', (request()->input('page', 1) - 1) * 50);
     }
 
     /**

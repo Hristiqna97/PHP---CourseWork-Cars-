@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Makes;
 use Illuminate\Http\Request;
 
 class MakesController extends Controller
@@ -13,7 +14,9 @@ class MakesController extends Controller
      */
     public function index()
     {
+        $makes = Makes::latest()->paginate(50);
 
+        return view("makes.index", compact("makes"))->with('i', (request()->input('page', 1) - 1) * 50);
     }
 
     /**

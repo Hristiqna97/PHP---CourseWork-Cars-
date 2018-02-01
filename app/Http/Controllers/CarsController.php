@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
+use App\Cars;
+use App\Models;
+use App\Makes;
+use Illuminate\Support\Facades\Validator;
 
 class CarsController extends Controller
 {
@@ -13,7 +18,12 @@ class CarsController extends Controller
      */
     public function index()
     {
-        //
+
+
+        $cars = Cars::latest()->paginate(50);
+
+        return view("cars.index", compact("cars"))->with('i', (request()->input('page', 1) - 1) * 50);
+
     }
 
     /**
@@ -23,7 +33,7 @@ class CarsController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -35,7 +45,39 @@ class CarsController extends Controller
     public function store(Request $request)
     {
         //
+
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'model_id'       => 'required',
+            'year' => 'required',
+            'km' => 'required'
+        );
+
+        /*print '<pre>';
+        print_r($request->all());
+        die;*/
+
+        $validator = Validator::make($request->all(), $rules);
+        // process the login
+        if ($validator->fails()) {
+            return redirect('cars/create')
+                ->withErrors($validator)
+                ->withInput($request->all());
+        } else {
+
+            $carDate = \DateTime::createFromFormat('Y', $request->get('year'));
+
+            $cars = new Cars([
+                'model_id' => $request->get('model_id'),
+                'year' => $carDate,
+                'km' => $request->get('km'),
+            ]);
+            $cars->save();
+            return redirect('cars');
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -45,7 +87,8 @@ class CarsController extends Controller
      */
     public function show($id)
     {
-        //
+        $car = Cars::find($id);
+        return view('cars.show', ["car" => $car]);
     }
 
     /**
@@ -56,7 +99,11 @@ class CarsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $models = Models::all();
+        $makes = Makes::all();
+        $car = Cars::find($id);
+        return view("cars.edit", ["models" => $models, "makes" => $makes, "car" => $car]);
+
     }
 
     /**

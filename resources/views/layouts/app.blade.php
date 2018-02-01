@@ -34,7 +34,8 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
+
+                     <li><a href="{{ route('cars') }}"><i class="fa fa-list"></i> <span>Cars</span></a></li>
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
