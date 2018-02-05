@@ -6,8 +6,8 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Edit Subject
-                        <a href="{{ URL::to('/cars/edit') }}" class="pull-right">List all</a>
+                        Edit Cars
+                        <a href="{{ URL::to('cars') }}" class="pull-right">List all</a>
                     </div>
 
                     <div class="panel-body">
@@ -16,14 +16,29 @@
                             <div class="alert alert-info">{{ Session::get('message') }}</div>
                         @endif
 
-                        <form method="post" action="{{action('/cars/edit/{id}', $id)}}">
+                        <form method="post" action="{{action('cars.edit', $id)}}">
                             <div class="form-group row">
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="PATCH">
-                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Name</label>
+                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">model_id</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="name" name="name" value="{{$subject->title}}">
+                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="model_id" name="model_id" value="{{$cars->model_id}}">
                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                {{csrf_field()}}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">year</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="year" name="year" value="{{$cars->year}}">
+                                </div>
+                                <div class="form-group row">
+                                    {{csrf_field()}}
+                                    <input name="_method" type="hidden" value="PATCH">
+                                    <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">km</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="km" name="year" value="{{$cars->km}}">
+                                    </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-2"></div>

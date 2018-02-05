@@ -38,13 +38,14 @@ class ModelsController extends Controller
     public function store(Request $request)
     {
         $rules = array(
+            'id' => 'required',
             'name' => 'required',
             'makes_id' => 'required'
         );
 
-       // print '<pre>';
-       // print_r($request->all());
-       // die;
+        /*print '<pre>';
+        print_r($request->all());
+        die;*/
 
         $validator = Validator::make($request->all(), $rules);
         // process the login
@@ -55,11 +56,12 @@ class ModelsController extends Controller
         } else {
 
 
-            $models = new Models([
+            $makes = new Models([
                 'name' => $request->get('name'),
-                'makes_id' => $request->get('makes_id'),
+                'makes_id' =>  $request->get('makes_id')
+                ,
             ]);
-            $models->save();
+            $makes->save();
             return redirect('models');
         }
     }

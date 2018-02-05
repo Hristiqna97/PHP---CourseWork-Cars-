@@ -38,7 +38,7 @@ class MakesController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-
+            'id' => 'required',
             'name' => 'required',
             'year' => 'required'
         );

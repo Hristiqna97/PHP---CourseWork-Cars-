@@ -8,7 +8,7 @@
                 <h2>Modeli</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('models.create') }}"> Добави нов производител</a>
+                <a class="btn btn-success" href="{{ route('models.create') }}"> Добави нов модил</a>
             </div>
         </div>
     </div>
@@ -46,6 +46,6 @@
             </tr>
         @endforeach
     </table>
-    {!! $model->links() !!}
+    {!! $models->links() !!}
 
 @endsection
