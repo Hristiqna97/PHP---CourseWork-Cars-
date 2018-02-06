@@ -38,10 +38,12 @@
                 <td>{{ $make->name }}</td>
                 <td>{{ $make->year}}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('makes.show',$make->id) }}" target="_blank">Покажи</a>
-                    <a class="btn btn-primary" href="{{ route('makes.edit',$make->id) }}">Редактирай</a>
-                    <form method="delete" action="{{route('makes.delete',$make->id)}}" style="display:inline">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                    <a class="btn btn-info" href="{{action('MakesController@show', $make->id)}}" target="_blank">Покажи</a>
+                    <a class="btn btn-primary" href="{{action('MakesController@edit', $make->id)}}">Редактирай</a>
+                    <form action="{{action('MakesController@destroy', $make->id )}}" method="post" style="display:inline-block" class="delete_form">
+                        {{csrf_field()}}
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
 
                 </td>

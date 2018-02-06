@@ -19,14 +19,9 @@ class CarsController extends Controller
     public function index(Request $request)
     {
 
-        $year = $request->get('year', null);
-
-
-
-
         $cars = Cars::latest()->paginate(50);
 
-        return view("cars.index", compact("cars"))->with('i', (request()->input('page', 1) - 1) * 50);
+        return view("cars.index")->with('cars', $cars);
 
     }
 
@@ -37,7 +32,9 @@ class CarsController extends Controller
      */
     public function create()
     {
-        return view('cars.create');
+        $makes = Makes::all();
+        $models = Models::all();
+        return view('cars.create')->with('makes', $makes)->with('models', $models);
     }
 
     /**
@@ -104,7 +101,7 @@ class CarsController extends Controller
     public function edit($id)
     {
         $cars = Cars::find($id);
-        $models = Makes::all();
+        $models = Models::all();
         return view('cars.edit', compact('cars','id'))->with('cars',$cars)->with('models', $models);
 
     }

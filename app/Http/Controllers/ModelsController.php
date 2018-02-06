@@ -29,7 +29,8 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        return view('models.create');
+        $makes = Makes::all();
+        return view('models.create')->with('makes', $makes);
     }
 
     /**

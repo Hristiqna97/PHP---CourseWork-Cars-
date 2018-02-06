@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
 
 
-                    <form method="post" action="{{url('makes/store')}}" enctype="multipart/form-data">
+                    <form method="post" action="{{url('makes')}}" enctype="multipart/form-data">
 
                         <div class="form-group row">
                             {{csrf_field()}}

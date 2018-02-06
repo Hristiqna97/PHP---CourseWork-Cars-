@@ -14,10 +14,8 @@
     </div>
 
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+    @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
 
@@ -28,7 +26,7 @@
             <th>Модел</th>
             <th>Година</th>
             <th width="280px">Километри</th>
-            <th>&nbsp;</th>
+            <th>Actions</th>
         </tr>
         @foreach ($cars as $car)
             <tr>
@@ -40,10 +38,12 @@
                 <td>{{ $car->year}}</td>
                 <td>{{ $car->km}}</td>
                 <td>
-                    <a class="btn btn-info" href="{{ route('cars.show',$car->id) }}" target="_blank">Покажи</a>
-                    <a class="btn btn-primary" href="{{ route('cars.edit',$car->id) }}">Редактирай</a>
-                    <form method="delete" action="{{route('cars.delete',$car->id)}}" style="display:inline">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                    <a class="btn btn-info" href="{{action('CarsController@show', $car->id)}}" target="_blank">Покажи</a>
+                    <a class="btn btn-primary" href="{{action('CarsController@edit', $car->id)}}">Редактирай</a>
+                    <form action="{{action('CarsController@destroy', $car->id )}}" method="post" style="display:inline-block" class="delete_form">
+                        {{csrf_field()}}
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
 
                 </td>

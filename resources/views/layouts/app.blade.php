@@ -35,9 +35,9 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
-                     <li><a href="{{ route('cars') }}"><i class="fa fa-list"></i> <span>Cars</span></a>|
-                    <a href="{{ route('models') }}"><i class="fa fa-list"></i> <span>Models</span></a>|
-                    <a href="{{ route('makes') }}"><i class="fa fa-list"></i> <span>Makes</span></a></li>
+                     <li><a href="/cars"><i class="fa fa-list"></i> <span>Cars</span></a>|
+                    <a href="/models"><i class="fa fa-list"></i> <span>Models</span></a>|
+                    <a href="/makes"><i class="fa fa-list"></i> <span>Makes</span></a></li>
 
                     <ul class="nav navbar-nav">
                         &nbsp;

@@ -7,20 +7,17 @@
                 <div class="panel panel-default">
 
 
-                        <form method="post" action="{{url('cars/store')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{url('cars')}}" enctype="multipart/form-data">
 
-                            <div class="form-group row">
-                                {{csrf_field()}}
-                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Производител</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="makers" name="makers">
-                                </div>
-                            </div>
                             <div class="form-group row">
                                 {{csrf_field()}}
                                 <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Модел</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="model" name="model_id">
+                                    <select name="model_id">
+                                        @foreach($models as $model)
+                                            <option value="{{$model->id}}">{{$model->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
