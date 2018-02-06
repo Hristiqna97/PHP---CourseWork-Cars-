@@ -16,8 +16,12 @@ class CarsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $year = $request->get('year', null);
+
+
 
 
         $cars = Cars::latest()->paginate(50);
@@ -100,7 +104,8 @@ class CarsController extends Controller
     public function edit($id)
     {
         $cars = Cars::find($id);
-        return view('cars.edit', compact('cars','id'));
+        $models = Makes::all();
+        return view('cars.edit', compact('cars','id'))->with('cars',$cars)->with('models', $models);
 
     }
 

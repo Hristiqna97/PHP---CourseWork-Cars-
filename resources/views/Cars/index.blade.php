@@ -50,6 +50,17 @@
             </tr>
         @endforeach
     </table>
+    <div class="row col-6 text-center">
+        <form action="" method="get">
+            <fieldset>
+                <legend>Търсене</legend>
+                <label for="year">Година </label>
+                <input id="year" name="year" type="text"><br />
+
+                <input type="submit" class="btn btn-primary" value="Търси">
+            </fieldset>
+        </form>
+    </div><br>
     {!! $cars->links() !!}
 
 @endsection

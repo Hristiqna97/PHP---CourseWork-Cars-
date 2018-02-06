@@ -58,11 +58,10 @@ class MakesController extends Controller
         } else {
 
 
-
+            $makesDate = \DateTime::createFromFormat('Y', $request->get('year'));
             $makes = new Makes([
                 'name' => $request->get('name'),
-                'year' => $request->get('year')
-                ,
+                'year' => $makesDate
             ]);
             $makes->save();
             return redirect('makes');
@@ -77,8 +76,8 @@ class MakesController extends Controller
      */
     public function show($id)
     {
-        $makes = Makes::find($id);
-        return view('makes.show', ["make" => $makes]);
+        $make = Makes::find($id);
+        return view('makes.show', ["make" => $make]);
     }
 
     /**
@@ -90,7 +89,7 @@ class MakesController extends Controller
     public function edit($id)
     {
         $makes = Makes::find($id);
-        return view('makes.edit', compact('makes','id'));
+        return view('makes.edit', compact('makes','id'))->with('makes', $makes);
     }
 
     /**
@@ -117,6 +116,8 @@ class MakesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $makes = Makes::find($id);
+        $makes->delete();
+        return redirect('makes')->with('message', 'Car was deleted!');
     }
 }

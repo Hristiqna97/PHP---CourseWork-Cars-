@@ -23,7 +23,7 @@ Route::get('/makes', 'MakesController@index')->name('makes');
 Route::get('/makes/{id}', 'MakesController@show')->name('makes.show');
 Route::get('/makes/edit/{id}', 'MakesController@edit')->name('makes.edit');
 Route::post('/makes/edit/{id}', 'MakesController@update')->name('makes.update');
-Route::get('/makes/create', 'MakesController@create')->name('makes.create');
+Route::get('/makes/create/make', 'MakesController@create')->name('makes.create');
 Route::post('/makes/store', 'MakesController@store')->name('makes.store');
 Route::delete('/makes/delete/{id}', 'MakesController@destroy')->name('makes.delete');
 
@@ -32,7 +32,7 @@ Route::get('/models', 'ModelsController@index')->name('models');
 Route::get('/models/{id}', 'ModelsController@show')->name('models.show');
 Route::get('/models/edit/{id}', 'ModelsController@edit')->name('models.edit');
 Route::post('/models/edit/{id}', 'ModelsController@update')->name('models.update');
-Route::get('/models/create', 'ModelsController@create')->name('models.create');
+Route::get('/models/create/model', 'ModelsController@create')->name('models.create');
 Route::post('/models/store', 'ModelsController@store')->name('models.store');
 Route::delete('/models/delete/{id}', 'ModelsController@destroy')->name('models.delete');
 

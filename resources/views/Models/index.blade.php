@@ -10,7 +10,7 @@
                 <h2>Модели</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('models.create') }}"> Добави нов модил</a>
+                <a class="btn btn-success" href="{{ route('models.create') }}"> Добави нов модел</a>
             </div>
         </div>
     </div>

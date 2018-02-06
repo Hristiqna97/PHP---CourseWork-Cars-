@@ -16,7 +16,7 @@
                             <div class="alert alert-info">{{ Session::get('message') }}</div>
                         @endif
 
-                        <form method="post" action="{{action('CarsController@update', $id)}}">
+                        <form method="post" action="{{action('MakesController@update', $makes->id)}}">
                             <div class="form-group row">
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="PATCH">

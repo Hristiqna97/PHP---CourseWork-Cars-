@@ -113,6 +113,8 @@ class ModelsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $models = Models::find($id);
+        $models->delete();
+        return redirect('models')->with('message', 'Car was deleted!');
     }
 }

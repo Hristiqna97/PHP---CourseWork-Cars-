@@ -11,14 +11,14 @@
 
                         <div class="form-group row">
                             {{csrf_field()}}
-                            <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">name</label>
+                            <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Име</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="name" name="name">
                             </div>
                         </div>
                         <div class="form-group row">
                             {{csrf_field()}}
-                            <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">makes_id</label>
+                            <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Производител</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="makes_id" name="makes_id">
                             </div>
