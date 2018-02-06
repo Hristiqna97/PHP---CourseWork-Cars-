@@ -100,7 +100,7 @@ class CarsController extends Controller
     public function edit($id)
     {
         $cars = Cars::find($id);
-        return view('cars.edit', compact('cars','model_id'));;
+        return view('cars.edit', compact('cars','id'));
 
     }
 
@@ -113,7 +113,13 @@ class CarsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $car = Cars::find($id);
+        $car->model_id = $request->get('model_id');
+        $car->year = $request->get('year');
+        $car->km = $request->get('km');
+        $car->save();
+        return redirect('cars')->with('success', 'Task was successful!');
     }
 
     /**
@@ -124,6 +130,8 @@ class CarsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cars = Cars::find($id);
+        $cars->delete();
+        return redirect('cars')->with('message', 'Car was deleted!');
     }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Makes;
 use Illuminate\Http\Request;
+use App\Cars;
+use App\Models;
+use Illuminate\Support\Facades\Validator;
 
 class MakesController extends Controller
 {
@@ -38,12 +41,11 @@ class MakesController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'id' => 'required',
             'name' => 'required',
             'year' => 'required'
         );
 
-        /*print '<pre>';
+      /*  print '<pre>';
         print_r($request->all());
         die;*/
 
@@ -55,11 +57,11 @@ class MakesController extends Controller
                 ->withInput($request->all());
         } else {
 
-            $makesDate = \DateTime::createFromFormat('Y', $request->get('year'));
+
 
             $makes = new Makes([
                 'name' => $request->get('name'),
-                'year' => makesDate
+                'year' => $request->get('year')
                 ,
             ]);
             $makes->save();
@@ -75,7 +77,8 @@ class MakesController extends Controller
      */
     public function show($id)
     {
-        //
+        $makes = Makes::find($id);
+        return view('makes.show', ["make" => $makes]);
     }
 
     /**
@@ -86,7 +89,8 @@ class MakesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $makes = Makes::find($id);
+        return view('makes.edit', compact('makes','id'));
     }
 
     /**
@@ -98,7 +102,11 @@ class MakesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $make = Makes::find($id);
+        $make->name = $request->get('name');
+        $make->year = $request->get('year');
+        $make->save();
+        return redirect('makes')->with('success', 'Task was successful!');
     }
 
     /**

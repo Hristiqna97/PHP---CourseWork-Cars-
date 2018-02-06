@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models;
 use Illuminate\Http\Request;
+use App\Cars;
+use App\Models;
+use App\Makes;
+use Illuminate\Support\Facades\Validator;
 
 class ModelsController extends Controller
 {
@@ -38,14 +41,9 @@ class ModelsController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'id' => 'required',
             'name' => 'required',
             'makes_id' => 'required'
         );
-
-        /*print '<pre>';
-        print_r($request->all());
-        die;*/
 
         $validator = Validator::make($request->all(), $rules);
         // process the login
@@ -56,12 +54,12 @@ class ModelsController extends Controller
         } else {
 
 
-            $makes = new Models([
+            $models = new Models([
                 'name' => $request->get('name'),
                 'makes_id' =>  $request->get('makes_id')
                 ,
             ]);
-            $makes->save();
+            $models->save();
             return redirect('models');
         }
     }
@@ -75,7 +73,8 @@ class ModelsController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Models::find($id);
+        return view('models.show', ["model" => $model]);
     }
 
     /**
@@ -86,7 +85,8 @@ class ModelsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $models = Models::find($id);
+        return view('models.edit', compact('models','id'));
     }
 
     /**
@@ -98,7 +98,11 @@ class ModelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = Models::find($id);
+        $model->name = $request->get('name');
+        $model->makes_id = $request->get('makes_id');
+        $model->save();
+        return redirect('cars')->with('success', 'Task was successful!');
     }
 
     /**

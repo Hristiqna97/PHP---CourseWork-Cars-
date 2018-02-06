@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <head>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    </head>
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -24,8 +26,8 @@
     <table class="table table-bordered">
         <tr>
             <th>ID</th>
-            <th>name</th>
-            <th>year</th>
+            <th>Име на производител</th>
+            <th>Година на създаване</th>
             <th>&nbsp;</th>
         </tr>
         @foreach ($makes as $make)

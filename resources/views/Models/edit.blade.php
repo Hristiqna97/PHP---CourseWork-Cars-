@@ -1,21 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                       Поправи модел
+                        <a href="{{ URL::to('models') }}" class="pull-right">Списък</a>
+                    </div>
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Редакция на модел</h2>
-            </div>
-            <div class="pull-right">
-                <br/>
-                <a class="btn btn-primary" href="{{ route('models') }}"> Обратно</a>
+                    <div class="panel-body">
+                        <!-- will be used to show any messages -->
+                        @if (Session::has('message'))
+                            <div class="alert alert-info">{{ Session::get('message') }}</div>
+                        @endif
+
+                        <form method="post" action="{{action('ModelsController@update', $id)}}">
+                            <div class="form-group row">
+                                {{csrf_field()}}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Име</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="name" name="name" value="{{$models->name}}">
+                                </div>
+                                <div class="form-group row">
+                                    {{csrf_field()}}
+                                    <input name="_method" type="hidden" value="PATCH">
+                                    <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Производител</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="title" name="makes_id" value="{{$models->makes->name}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-2"></div>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <form method="edit" action="/models/edit/{{$car->id}}" style="display:inline">
-        @include('models.form')
-        <button type="submit" class="btn btn-danger">Edit</button>
-    </form>
-
 @endsection

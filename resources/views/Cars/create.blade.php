@@ -29,6 +29,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="year" name="year">
                                 </div>
+                            </div>
                                 <div class="form-group row">
                                     {{csrf_field()}}
                                     <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Километри</label>
@@ -36,7 +37,7 @@
                                         <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="km" name="km">
                                     </div>
                                 </div>
-                            </div>
+
 
                             <div class="form-group row">
                                 <div class="col-md-2"></div>

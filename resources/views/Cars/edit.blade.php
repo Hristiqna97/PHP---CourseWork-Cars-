@@ -6,8 +6,8 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Edit Cars
-                        <a href="{{ URL::to('cars') }}" class="pull-right">List all</a>
+                        Поправи автомобил
+                        <a href="{{ URL::to('cars') }}" class="pull-right">Списък</a>
                     </div>
 
                     <div class="panel-body">
@@ -16,36 +16,45 @@
                             <div class="alert alert-info">{{ Session::get('message') }}</div>
                         @endif
 
-                        <form method="post" action="{{action('cars.edit', $id)}}">
+                        <form method="post" action="{{action('CarsController@update', $id)}}">
                             <div class="form-group row">
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="PATCH">
-                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">model_id</label>
+                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Производител</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="model_id" name="model_id" value="{{$cars->model_id}}">
+                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="title" name="model_id" value="{{$cars->model->makes->name}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="PATCH">
-                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">year</label>
+                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Модел</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="year" name="year" value="{{$cars->year}}">
+                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="title" name="model_id" value="{{$cars->model->name}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{csrf_field()}}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Година</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="title" name="year" value="{{$cars->year}}">
                                 </div>
                                 <div class="form-group row">
                                     {{csrf_field()}}
                                     <input name="_method" type="hidden" value="PATCH">
-                                    <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">km</label>
+                                    <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Километри</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="km" name="year" value="{{$cars->km}}">
+                                        <input type="text" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="title" name="km" value="{{$cars->km}}">
                                     </div>
+                                </div>
                             </div>
+
                             <div class="form-group row">
                                 <div class="col-md-2"></div>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
